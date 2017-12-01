@@ -1,0 +1,29 @@
+<html>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#button').on("click",
+
+      function enviar() {
+
+        var iptText = $('#iptmensagem').val();
+
+        $.get("/message", { "mensagem": iptText }, function (data) {
+          console.log(data);
+          $("#response").append("Eu: " + iptText).append("<br>");
+          $("#response").append("Watson: " +data.output.text[0]).append("<br><br>");
+        });
+      })
+  })
+</script>
+
+
+  Mensagem:
+  <br>
+  <input type="text" id="iptmensagem" name="mensagem">
+  <br>
+  <button id="button">Enviar</button>
+  <div id="response"></div>
+
+
+</html>
